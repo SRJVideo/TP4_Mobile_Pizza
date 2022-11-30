@@ -8,4 +8,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:navigationIcon="@drawable/menu_icon"
     app:title="Barre-Fragment"
-    app:titleTextColor="#FFF"></androidx.appcompat.widget.Toolbar>
+    app:titleTextColor="#FFF">
+
+
+
+
+</androidx.appcompat.widget.Toolbar>

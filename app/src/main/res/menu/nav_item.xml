@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
 
+        <item
+            android:id="@+id/premier"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:title="Premier Menu" />
+        <item
+            android:id="@+id/deuxieme"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:title="Deuxieme Menu" />
+        <item
+            android:id="@+id/troisieme"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:title="Troisieme Menu" />
+    </group>
 </menu>

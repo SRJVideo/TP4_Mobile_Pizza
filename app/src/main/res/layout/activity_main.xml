@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parentLayout"
+    android:id="@+id/drawerLayout"
     tools:context=".activity.MainActivity">
 
 
@@ -23,7 +23,7 @@
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigationViewApp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
