@@ -6,8 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.tp4_pizzaapplication.R;
+import com.example.tp4_pizzaapplication.databinding.ActivityMainBinding;
+import com.example.tp4_pizzaapplication.databinding.ToolbarBinding;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +24,8 @@ import java.util.regex.Pattern;
  * cette classe sera utilisée comme activité parente pour toutes les autres activités de l'application
  */
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     Context context;
     Intent intent;
@@ -35,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        Toolbar toolbarApp = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarApp);
+
+
     }
 
     /**
