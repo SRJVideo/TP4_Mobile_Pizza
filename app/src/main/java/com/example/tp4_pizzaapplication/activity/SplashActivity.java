@@ -25,13 +25,13 @@ public class SplashActivity extends MainActivity {
             @Override
             public void run() {
                 if (isLoggedIn()) {
-                    //Redirect to home page
-                    intent = new Intent(context, HomeActivity.class);
+                    //TODO Redirect to "Une activité pour commander une pizza"     ----- A modifier
+                    intent = new Intent(context, null);
                     startActivity(intent);
                     finish();
                 } else {
-                    //Redirect to Login Page
-                    intent = new Intent(context, LoginActivity.class);
+                    //Redirect to Accueil Page
+                    intent = new Intent(context, AccueilActivity.class);
                     startActivity(intent);
                     finish();
                 }
