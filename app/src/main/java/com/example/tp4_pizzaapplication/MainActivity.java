@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         return sharedPreferences.getBoolean("login",false);
     }
 
+
     /**
      * Redirige vers login page
      */
