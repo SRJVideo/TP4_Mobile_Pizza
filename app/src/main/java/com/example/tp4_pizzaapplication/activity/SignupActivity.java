@@ -46,7 +46,6 @@ public class SignupActivity extends MainActivity {
         passwordEt = findViewById(R.id.passwordEt);
         signupBtn = findViewById(R.id.SignupBtn);
         LoginNowTv = findViewById(R.id.LoginNowTv);
-        paysSp = findViewById(R.id.spinnerPays);
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

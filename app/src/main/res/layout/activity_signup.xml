@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".SignupActivity">
+    tools:context=".activity.SignupActivity">
     <TextView
         android:id="@+id/titleTv"
         android:layout_centerHorizontal="true"
@@ -73,28 +72,17 @@
         android:minHeight="48dp"
         android:padding="8dp" />
 
-    <Spinner
-        android:id="@+id/spinnerPays"
-        android:layout_width="303dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passwordEt"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="28dp" />
-
     <Button
         android:id="@+id/SignupBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:text="Signup"
         android:textAllCaps="false"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:background="@color/white"
-        android:textColor="@color/colorPrimary"
-        android:layout_below="@id/spinnerPays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textColor="#757575" />
 
     <TextView
         android:id="@+id/LoginNowTv"
