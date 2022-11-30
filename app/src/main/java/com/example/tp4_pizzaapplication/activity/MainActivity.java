@@ -1,4 +1,4 @@
-package com.example.tp4_pizzaapplication;
+package com.example.tp4_pizzaapplication.activity;
 
 import android.content.Context;
 import android.content.Intent;
