@@ -3,6 +3,8 @@ package com.example.tp4_pizzaapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.example.tp4_pizzaapplication.R;
 import com.example.tp4_pizzaapplication.activity.MainActivity;
 
@@ -17,6 +19,7 @@ public class SplashActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         init();
         setContentView(R.layout.activity_splash);
         // 5 seconds pause on splash page
@@ -41,6 +44,8 @@ public class SplashActivity extends MainActivity {
 
     public void init() {
         context = this;
+        toolbarApp = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarApp);
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
     }
 }

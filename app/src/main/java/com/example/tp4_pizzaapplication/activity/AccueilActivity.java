@@ -1,6 +1,7 @@
 package com.example.tp4_pizzaapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
@@ -16,5 +17,6 @@ public class AccueilActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAccueilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
     }
 }

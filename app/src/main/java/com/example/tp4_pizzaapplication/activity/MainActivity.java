@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     DrawerLayout dLayout;
+    Toolbar toolbarApp;
 
     Context context;
     Intent intent;
@@ -50,12 +51,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar toolbarApp = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbarApp);
-
-        toolbarApp.setNavigationOnClickListener(v -> {
-            dLayout.openDrawer(Gravity.LEFT);
-        });
 
     }
 

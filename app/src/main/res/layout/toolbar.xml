@@ -7,7 +7,8 @@
     android:background="?attr/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:navigationIcon="@drawable/menu_icon"
-    app:title="Barre-Fragment"
+    app:logo="@drawable/luigislogo"
+    app:title=" "
     app:titleTextColor="#FFF">
 
 
