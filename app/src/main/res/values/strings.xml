@@ -4,6 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Accueil -->
     <string name="coordonnees_pizza">Une Pizzeria Quelconque\n
-        1234 Rue de Quelqu\'un&amp;#44 Quebec&amp;#44 QC&amp;#44 G1D 2E3
+        1234 Rue de Quelqu\'un\n Quebec, QC, G1D 2E3
         \n\+1 418 256-5224 </string>
 </resources>

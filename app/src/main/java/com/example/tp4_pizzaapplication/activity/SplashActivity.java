@@ -44,8 +44,6 @@ public class SplashActivity extends MainActivity {
 
     public void init() {
         context = this;
-        toolbarApp = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbarApp);
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
     }
 }

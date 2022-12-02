@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         sharedPrefEditor = sharedPreferences.edit();
+        toolbarApp = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarApp);
     }
 
     /**

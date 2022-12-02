@@ -18,5 +18,7 @@ public class AccueilActivity extends MainActivity {
         binding = ActivityAccueilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        init();
+
     }
 }
