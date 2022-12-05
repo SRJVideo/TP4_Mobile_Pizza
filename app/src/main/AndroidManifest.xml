@@ -15,7 +15,7 @@
         android:theme="@style/Theme.TP4_PizzaApplication"
         tools:targetApi="31">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,17 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
-            android:exported="false"/>
-        <activity
             android:name=".activity.LoginActivity"
-            android:exported="false"/>
+            />
         <activity
             android:name=".activity.SignupActivity"
-            android:exported="false"/>
+            />
         <activity
             android:name=".activity.AccueilActivity"
-            android:exported="false"/>
+            />
 
 
     </application>

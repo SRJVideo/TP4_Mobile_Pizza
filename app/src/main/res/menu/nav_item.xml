@@ -3,16 +3,24 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/premier"
+            android:id="@+id/accueil"
             android:icon="@android:mipmap/sym_def_app_icon"
-            android:title="Premier Menu" />
+            android:title="Accueil" />
         <item
-            android:id="@+id/deuxieme"
+            android:id="@+id/pizza"
             android:icon="@android:mipmap/sym_def_app_icon"
-            android:title="Deuxieme Menu" />
+            android:title="Pizza" />
         <item
-            android:id="@+id/troisieme"
+            android:id="@+id/profil"
             android:icon="@android:mipmap/sym_def_app_icon"
-            android:title="Troisieme Menu" />
+            android:title="Profil" />
+        <item
+            android:id="@+id/commande"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:title="Mes commandes" />
+        <item
+            android:id="@+id/points"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:title="Mes points" />
     </group>
 </menu>

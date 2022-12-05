@@ -2,6 +2,8 @@ package com.example.tp4_pizzaapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tp4_pizzaapplication.R;
+import com.example.tp4_pizzaapplication.databinding.ActivityConnexionBinding;
+import com.example.tp4_pizzaapplication.databinding.NouveauCompteMainBinding;
 import com.example.tp4_pizzaapplication.util.service.WebReq;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -18,92 +22,77 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cz.msebera.android.httpclient.Header;
 
 public class SignupActivity extends MainActivity {
-    EditText nameEt, prenomEt, emailEt, passwordEt ;
-    Spinner paysSp;
-    Button signupBtn;
-    TextView LoginNowTv;
+    NouveauCompteMainBinding nouveauCompteMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Registration");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context = this;
         init();
-        setContentView(R.layout.activity_signup);
-        getViews();
+        nouveauCompteMainBinding = NouveauCompteMainBinding.inflate(getLayoutInflater());
+        setContentView(nouveauCompteMainBinding.getRoot());
+        setContentView(R.layout.nouveau_compte_main);
+        initEditField();
+        initPasswordField();
     }
 
-
-
-    public void getViews() {
-        nameEt = findViewById(R.id.nameEt);
-        prenomEt = findViewById(R.id.PrenomEt);
-        emailEt = findViewById(R.id.emailEt);
-        passwordEt = findViewById(R.id.passwordEt);
-        signupBtn = findViewById(R.id.SignupBtn);
-        LoginNowTv = findViewById(R.id.LoginNowTv);
-        signupBtn.setOnClickListener(new View.OnClickListener() {
+    private void initPasswordField() {
+        // EMAIL INPUT
+        nouveauCompteMainBinding.editPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                signupValidation();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (nouveauCompteMainBinding.editPassword.getText().toString().length() < 6) {
+                    nouveauCompteMainBinding.editPassword.setError("Au moins 6 caractères");
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
-        LoginNowTv.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void initEditField() {
+        // EMAIL INPUT
+        nouveauCompteMainBinding.editCourriel.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                finish();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (!isValidate(nouveauCompteMainBinding.editCourriel.getText().toString())) {
+                    nouveauCompteMainBinding.editCourriel.setError("Addresse Courriel non valide");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
+
     }
 
-    private void signupValidation() {
-        name = nameEt.getText().toString();
-        prenom = prenomEt.getText().toString();
-        email = emailEt.getText().toString();
-        password = passwordEt.getText().toString();
-
-
-        if (name.length() < 3) {
-            Toast.makeText(context, "Name at least 3 characters.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (prenom.length() < 3) {
-            Toast.makeText(context, "Name at least 3 characters.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (email.length() == 0) {
-            Toast.makeText(context, "Invalid Email Address", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (isEmailValid(email) == false) {
-            Toast.makeText(context, "Invalid Email Address", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (password.length() < 5) {
-            Toast.makeText(context, "Minimum password length should be 5 characters.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (pays.length() < 3) {
-            Toast.makeText(context, "Name at least 3 characters.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //all inputs are validated now perform login request
-        RequestParams params = new RequestParams();
-        params.add("type", "signup");
-        params.add("name", name);
-        params.add("prenom", prenom);
-        params.add("email", email);
-        params.add("password", password);
-        params.add("pays", pays);
-        WebReq.post(context, "api.php", params, new ResponseHandler());
-        System.out.println(params);
+    private boolean isValidate(String email) {
+        Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return matcher.find();
     }
-
     private class ResponseHandler extends JsonHttpResponseHandler {
         @Override
         public void onStart() {

@@ -2,6 +2,8 @@ package com.example.tp4_pizzaapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tp4_pizzaapplication.R;
+import com.example.tp4_pizzaapplication.databinding.ActivityConnexionBinding;
 import com.example.tp4_pizzaapplication.util.service.WebReq;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -17,77 +20,119 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cz.msebera.android.httpclient.Header;
 
 public class LoginActivity extends MainActivity {
-    EditText emailEt,passwordEt;
-    Button loginBtn;
-    TextView signupNowTv;
-    String email,password;
+    ActivityConnexionBinding activityConnexionBinding;
+    //List<Client> listeClientsBD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context=this;
-        setContentView(R.layout.activity_login);
+        activityConnexionBinding = ActivityConnexionBinding.inflate(getLayoutInflater());
+        setContentView(activityConnexionBinding.getRoot());
         init();
-        getViews();
+        initEditField();
+        initPasswordField();
     }
 
+    void lanceActivityLogin(){
+        Intent in = new Intent(this, LoginActivity.class);
+        startActivity(in);
+    }
 
-    /**
-     * Affiche les vue de la page login
-     */
-    private void getViews() {
-        emailEt = findViewById(R.id.emailEt);
-        signupNowTv = findViewById(R.id.signupNowTv);
-        passwordEt = findViewById(R.id.passwordEt);
-        loginBtn = findViewById(R.id.loginBtn);
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginValidation();
+    private boolean VerifierSiLeUserExiste() {
+        //listeUserBD = databaseManager.readUsers();
+        String courriel = activityConnexionBinding.EditCourriel.getText().toString();
+        String motDePasse = activityConnexionBinding.editPassword.getText().toString();
+        boolean existe = false;
+      //  System.out.println(listeUserBD.size());
+       /* for (User user : listeUserBD) {
+            System.out.println(user);
+            if (user.getEmail().equals(courriel) && user.getPassword().equals(password)) {
+                currentFirstName = user.getFirstName();
+                currentLastName = user.getLastName();
+                existe = true;
+                break;
             }
-        });
-        signupNowTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent = new Intent(context, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
+        }*/
+        return existe;
     }
 
     /**
      * permet la validation de l'email et mot de passe de l'utilisateur
      * Si tout est correcte, il envoie les données au serveur.
      */
-    private void loginValidation() {
-        email = emailEt.getText().toString();
-        password = passwordEt.getText().toString();
-        if (email.length()==0){
-            Toast.makeText(context,"Invalid Email Address",Toast.LENGTH_SHORT).show();
-            return;
+    private void LanceActiviteSiUserExiste() {
+        String courriel = activityConnexionBinding.EditCourriel.getText().toString();
+        String motDePasse = activityConnexionBinding.editPassword.getText().toString();
+        if (VerifierSiLeUserExiste()) {
+            Intent intent = new Intent(this, AccueilActivity.class);
+            intent.putExtra("CourrielCourant", courriel);
+            intent.putExtra("PasswordCourant", motDePasse);
+            startActivity(intent);
         }
-        if (isEmailValid(email)==false){
-            Toast.makeText(context,"Invalid Email Address",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (password.length()<5){
-            Toast.makeText(context,"Minimum password length should be 5 characters.",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //all inputs are validated now perform login request
-        RequestParams params = new RequestParams();
-        params.add("type","login");
-        params.add("email",email);
-        params.add("password",password);
-        System.out.println(email);
-        WebReq.post(context, "api.php", params, new ResponseHandler());
+
     }
     public void init() {
         context =this;
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         sharedPrefEditor = sharedPreferences.edit();
+    }
+
+    private void initPasswordField() {
+        // EMAIL INPUT
+        activityConnexionBinding.editPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (activityConnexionBinding.editPassword.getText().toString().length() < 6) {
+                    activityConnexionBinding.editPassword.setError("Au moins 6 caractères");
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    private void initEditField() {
+        // EMAIL INPUT
+        activityConnexionBinding.EditCourriel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (!isValidate(activityConnexionBinding.EditCourriel.getText().toString())) {
+                    activityConnexionBinding.EditCourriel.setError("Addresse Courriel non valide");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+    }
+
+    private boolean isValidate(String email) {
+        Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return matcher.find();
     }
 
     /**
