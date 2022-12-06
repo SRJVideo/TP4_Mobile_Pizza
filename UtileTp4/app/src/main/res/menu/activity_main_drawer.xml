@@ -16,10 +16,26 @@
         android:checkableBehavior="single">
 
 
+
         <item
-            android:id="@+id/profile"
+            android:id="@+id/pizzas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Pizzas"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/toolbar_profile"
             android:icon="@drawable/user"
-            android:title="Profil"
+            android:title="Profile"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/commande"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:title="Mes commandes"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/points"
+            android:icon="@drawable/ic_baseline_star_24"
+            android:title="Mes points"
             app:showAsAction="always" />
 
 
