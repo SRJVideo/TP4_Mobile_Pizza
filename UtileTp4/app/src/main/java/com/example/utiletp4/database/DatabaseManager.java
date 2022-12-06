@@ -196,4 +196,20 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
         return commandes;
     }
 
+    /**
+     * get tous les pizzas de la table commande
+     * @return List<User>
+     */
+    public List<Pizza> readPizza() {
+        List<Pizza> pizzas = null;
+        try {
+            Dao<Pizza, Integer> dao = getDao(Pizza.class);
+            pizzas =  dao.queryForAll();
+            Log.i("DATABASE", "readCommande invoked");
+        } catch (Exception exception) {
+            Log.e("DATABASE", "Can't read pizza from Database", exception);
+        }
+        return pizzas;
+    }
+
 }
