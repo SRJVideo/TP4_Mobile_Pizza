@@ -4,11 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.1" />
+        <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/activity_connection.xml" value="0.2798913043478261" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/activity_inscription.xml" value="0.23731884057971014" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/activity_main.xml" value="0.23731884057971014" />
+        <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fraggment_pizza.xml" value="0.2028985507246377" />
+        <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fragment_commande.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fragment_connection.xml" value="0.23731884057971014" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fragment_home.xml" value="0.23731884057971014" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fragment_inscription.xml" value="0.23731884057971014" />
+        <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fragment_point.xml" value="0.2028985507246377" />
+        <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/fragment_profile.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/layout/tool_bar.xml" value="0.23731884057971014" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/menu/activity_main_drawer.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/1931084/Documents/GitHub/TP4_Mobile_Pizza/UtileTp4/app/src/main/res/menu/nav_items.xml" value="0.3385416666666667" />
