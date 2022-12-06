@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 
+import com.example.utiletp4.modele.Commande;
+import com.example.utiletp4.modele.Pizza;
 import com.example.utiletp4.modele.User;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -39,7 +41,8 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, User.class);
-
+            TableUtils.createTable(connectionSource, Pizza.class);
+            TableUtils.createTable(connectionSource, Commande.class);
 
             Log.i("DATABASE", "onCreate invoked");
         } catch (Exception exception) {
@@ -57,7 +60,9 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
-                       TableUtils.dropTable(connectionSource, User.class, true);
+            TableUtils.dropTable(connectionSource, User.class, true);
+            TableUtils.dropTable(connectionSource, Pizza.class, true);
+            TableUtils.dropTable(connectionSource, Commande.class, true);
             onCreate(database, connectionSource);
             Log.i("DATABASE", "onUpgrade invoked");
         } catch (Exception exception) {
@@ -81,6 +86,34 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
     }
 
     /**
+     * Insert pizza in DB
+     * @param pizza user
+     */
+    public void insertPizza(Pizza pizza) {
+        try {
+            Dao<Pizza, Integer> dao = getDao(Pizza.class);
+            dao.create(pizza);
+            Log.i("DATABASE", "insertUser invoked");
+        } catch (Exception exception) {
+            Log.e("DATABASE", "Can't insert pizza into Database");
+        }
+    }
+
+    /**
+     * Insert commande in DB
+     * @param commande user
+     */
+    public void insertCommande(Commande commande) {
+        try {
+            Dao<Commande, Integer> dao = getDao(Commande.class);
+            dao.create(commande);
+            Log.i("DATABASE", "insertCommande invoked");
+        } catch (Exception exception) {
+            Log.e("DATABASE", "Can't insert commande into Database");
+        }
+    }
+
+    /**
      * Update user in DB
      * @param user user
      */
@@ -94,6 +127,21 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
             Log.e("DATABASE", "Can't update user into Database");
         }
     }
+
+    /**
+     * Update commande in DB
+     * @param commande commande
+     */
+    public void updateCommande(Commande commande) {
+        try {
+            Dao<Commande, Integer> dao = getDao(Commande.class);
+            dao.update(commande);
+            Log.i("DATABASE", "update commande invoked");
+        } catch (Exception exception) {
+            Log.e("DATABASE", "Can't update user into Database");
+        }
+    }
+
 
 
 
@@ -130,6 +178,22 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
             Log.e("DATABASE", "Can't read user from Database", exception);
         }
         return users;
+    }
+
+    /**
+     * get tous les commande de la table commande
+     * @return List<User>
+     */
+    public List<Commande> readCommande() {
+        List<Commande> commandes = null;
+        try {
+            Dao<Commande, Integer> dao = getDao(Commande.class);
+            commandes =  dao.queryForAll();
+            Log.i("DATABASE", "readCommande invoked");
+        } catch (Exception exception) {
+            Log.e("DATABASE", "Can't read commande from Database", exception);
+        }
+        return commandes;
     }
 
 }
