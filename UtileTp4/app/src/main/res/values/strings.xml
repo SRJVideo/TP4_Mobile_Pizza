@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">TP4</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Papa John\'s</string>
+    <string name="nav_header_subtitle">Better Ingredients. Better Pizza.</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+
+
+    <string name="home_address">3220 Saint-Martin, Laval, CA H7T 1A1</string>
+    <string name="home_name">Papa John\'s Pizza</string>
+    <string name="home_phone">+1 450 688 7000</string>
+
+    <string name="authentication">Authentification</string>
+    <string name="email">Email :</string>
+    <string name="mot_de_passe">Mot de passe :</string>
+    <string name="connection">Connexion</string>
+    <string name="nouvel_utilisateur">Nouvel Utilisateur ?</string>
+    <string name="cr_er_un_compte">Créer un compte</string>
+
+
+</resources>
