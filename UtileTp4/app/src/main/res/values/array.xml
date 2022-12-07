@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pizzas">
+        <item>@drawable/bacon_pizza</item>
+        <item>@drawable/cheese_pizza</item>
+        <item>@drawable/garnished_pizza</item>
+        <item>@drawable/pepperoni_pizza</item>
+        <item>@drawable/pizza_aux_tomates</item>
+        <item>@drawable/pizza_royale</item>
+        <item>@drawable/vegetarian_pizza</item>
+    </string>
+    <string name="pizzas_nom">
+        <item>Bacon</item>
+        <item>Fromage</item>
+        <item>Garnie</item>
+        <item>Péppéroni</item>
+        <item>Tomates</item>
+        <item>Royale</item>
+        <item>Végétarienne</item>
+    </string>
+</resources>

@@ -18,22 +18,22 @@
 
 
         <item
-            android:id="@+id/pizzas"
+            android:id="@+id/nav_pizzas"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Pizzas"
             app:showAsAction="always" />
         <item
-            android:id="@+id/toolbar_profile"
+            android:id="@+id/nav_profile"
             android:icon="@drawable/user"
             android:title="Profile"
             app:showAsAction="always" />
         <item
-            android:id="@+id/commande"
+            android:id="@+id/nav_commande"
             android:icon="@drawable/ic_baseline_access_time_24"
             android:title="Mes commandes"
             app:showAsAction="always" />
         <item
-            android:id="@+id/points"
+            android:id="@+id/nav_points"
             android:icon="@drawable/ic_baseline_star_24"
             android:title="Mes points"
             app:showAsAction="always" />
