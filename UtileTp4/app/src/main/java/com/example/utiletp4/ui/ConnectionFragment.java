@@ -25,12 +25,14 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.utiletp4.MainActivity;
 import com.example.utiletp4.R;
 import com.example.utiletp4.database.DatabaseManager;
+import com.example.utiletp4.fragment.PizzaFragment;
 import com.example.utiletp4.modele.Field;
 import com.example.utiletp4.modele.User;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,6 +71,7 @@ public class ConnectionFragment extends Fragment {
 
                 mainActivity.setNavigationDrawer();
 
+                pizza(getView());
             }
         });
         buttonCreerCompte = (Button) root.findViewById(R.id.buttonCreerCompte);
@@ -188,6 +191,16 @@ public class ConnectionFragment extends Fragment {
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
         return matcher.find();
+    }
+
+    /***
+     * Aller au fragment pizza une fois connecté
+     * @param view
+     */
+    public void pizza(View view){
+        // Launch InscriptionFragment
+        PizzaFragment pizzaFragment = new PizzaFragment();
+        replaceFragmentInFrame(pizzaFragment);
     }
 
     private void replaceFragmentInFrame(Fragment frag) {

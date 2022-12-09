@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Nom User:"+currentUser.getName()+" Email:"+currentUser.getEmail(), Toast.LENGTH_SHORT).show();
                     break;
 
-                case R.id.profile:
+                case R.id.nav_profile:
                     frag = new InscriptionFragment();
                     break;
                 case R.id.pizzas:
