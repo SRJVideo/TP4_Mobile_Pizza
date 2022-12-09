@@ -47,4 +47,13 @@ public class Pizza {
 
     public Pizza() {
     }
+
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "sortePizza='" + sortePizza + '\'' +
+                ", type='" + type + '\'' +
+                ", prix=" + prix +
+                '}';
+    }
 }

@@ -93,7 +93,7 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
         try {
             Dao<Pizza, Integer> dao = getDao(Pizza.class);
             dao.create(pizza);
-            Log.i("DATABASE", "insertUser invoked");
+            Log.i("DATABASE", "insertPizza invoked");
         } catch (Exception exception) {
             Log.e("DATABASE", "Can't insert pizza into Database");
         }
