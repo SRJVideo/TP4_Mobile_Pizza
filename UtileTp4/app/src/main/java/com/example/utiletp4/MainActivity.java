@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_profile:
                     frag = new InscriptionFragment();
                     break;
-                case R.id.pizzas:
+                case R.id.nav_pizzas:
                     frag = new PizzaFragment();
                     break;
             }

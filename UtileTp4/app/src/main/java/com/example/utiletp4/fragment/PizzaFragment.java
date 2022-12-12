@@ -31,14 +31,6 @@ import java.util.List;
 
 public class PizzaFragment extends Fragment {
     DatabaseManager databaseManager;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_pizza, container, false);
-        databaseManager = new DatabaseManager(this.getContext());
-        AjoutPizzaBD();
-
-        return root;
-    }
 
     void AjoutPizzaBD(){
         //Sorte, bacon, cheese, pepperoni, garnie
@@ -84,7 +76,8 @@ public class PizzaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_pizza, container, false);
         // Instantiate object DB and View
         dbm = new DatabaseManager(getActivity());
-        afficherlesPizzas(root);
+
+        afficherlesPizzas(root);     AjoutPizzaBD();
         return root;
     }
 
