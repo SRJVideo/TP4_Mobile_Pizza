@@ -39,7 +39,7 @@ public class PizzaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_pizza, container, false);
         // Instantiate object DB and View
         dbm = new DatabaseManager(getActivity());
-        if (dbm.readPizza().isEmpty()) AjoutPizzaBD();
+        if (dbm.readPizza() != null) AjoutPizzaBD();
         afficherlesPizzas(root);
         return root;
     }
@@ -54,21 +54,19 @@ public class PizzaFragment extends Fragment {
         }
     }
 
-
     void AjoutPizzaBD(){
-        //Sorte, bacon, cheese, pepperoni, garnie
         String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
         String[] types = {"Petite","Moyenne","Grande"};
 
-            for (int i=0 ; i < sortes.length ; i++) {
-                double prix = (Math.random()*10);
+        for (int i=0 ; i < sortes.length ; i++) {
+            double prix = (Math.random()*10);
 
-                for (int j=0 ; i <types.length; i++ ) {
-                    Pizza pizza = new Pizza(sortes[i], types[j], prix+j);
+            for (int j=0 ; i <types.length; i++ ) {
+                Pizza pizza = new Pizza(sortes[i], types[j], prix+j);
 
-                    dbm.insertPizza(pizza);
-                }
+                dbm.insertPizza(pizza);
             }
+        }
     }
 
 

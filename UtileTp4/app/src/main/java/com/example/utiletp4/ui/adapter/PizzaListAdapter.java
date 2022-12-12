@@ -60,7 +60,7 @@ public class PizzaListAdapter extends BaseAdapter {
         TextView textType = convertView.findViewById(R.id.textViewTypePizza);
         textType.setText( readPizza.get(position).getType());
         TextView textPrix = convertView.findViewById(R.id.textViewPrixPizza);
-        textPrix.setText((int) readPizza.get(position).getPrix());
+        textPrix.setText( String.valueOf(readPizza.get(position).getPrix()));
         Spinner spinner = convertView.findViewById(R.id.spinnerPizza);
         Button bouton = convertView.findViewById(R.id.buttonAjouter);
         bouton.setOnClickListener(v -> {
