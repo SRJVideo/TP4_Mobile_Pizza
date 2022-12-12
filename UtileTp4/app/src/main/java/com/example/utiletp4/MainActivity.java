@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.example.utiletp4.fragment.CommandeFragment;
 import com.example.utiletp4.fragment.PizzaFragment;
+import com.example.utiletp4.fragment.PointsFragment;
 import com.example.utiletp4.modele.User;
 import com.example.utiletp4.ui.InscriptionFragment;
 import com.example.utiletp4.ui.home.HomeFragment;
@@ -60,14 +62,19 @@ public class MainActivity extends AppCompatActivity {
             switch (itemId) {
                 case R.id.home:
                     frag = new HomeFragment();
-                    Toast.makeText(this, "Nom User:"+currentUser.getName()+" Email:"+currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Nom User:" + currentUser.getName() + " Email:" + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
                     break;
-
                 case R.id.nav_profile:
                     frag = new InscriptionFragment();
                     break;
                 case R.id.nav_pizzas:
                     frag = new PizzaFragment();
+                    break;
+                case R.id.nav_commande:
+                    frag = new CommandeFragment();
+                    break;
+                case R.id.nav_points:
+                    frag = new PointsFragment();
                     break;
             }
 
@@ -86,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar.getMenu().getItem(0).setVisible(currentUser != null);
     }
-
 
 
     private void replaceFragmentInFrame(Fragment frag) {
