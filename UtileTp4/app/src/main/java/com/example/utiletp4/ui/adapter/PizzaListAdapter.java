@@ -52,9 +52,7 @@ public class PizzaListAdapter extends BaseAdapter {
         if(convertView == null)
         convertView = inflater.inflate(R.layout.pizza_list_adapter, parent,false);
 
-
         ImageView imgView = convertView.findViewById(R.id.imageViewPizzas);
-
         TextView textSorte = convertView.findViewById(R.id.textViewSortePizza);
         textSorte.setText(readPizza.get(position).getSortePizza());
         TextView textType = convertView.findViewById(R.id.textViewTypePizza);

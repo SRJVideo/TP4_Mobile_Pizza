@@ -5,31 +5,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.example.utiletp4.R;
 import com.example.utiletp4.database.DatabaseManager;
 import com.example.utiletp4.modele.Pizza;
-import android.widget.LinearLayout;
+
+import android.widget.AdapterView;
 import android.widget.ListView;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.example.utiletp4.MainActivity;
-import com.example.utiletp4.R;
-import com.example.utiletp4.database.DatabaseManager;
-import com.example.utiletp4.modele.Pizza;
 import com.example.utiletp4.ui.adapter.PizzaListAdapter;
 
-import java.util.List;
 
-public class PizzaFragment extends Fragment {
+
+public class PizzaFragment extends Fragment  {
     private MainActivity mainActivity;
     DatabaseManager dbm;
 
@@ -40,8 +30,15 @@ public class PizzaFragment extends Fragment {
         // Instantiate object DB and View
         dbm = new DatabaseManager(getActivity());
         if (dbm.readPizza() != null) AjoutPizzaBD();
-        afficherlesPizzas(root);
+
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        afficherlesPizzas(view);
     }
 
     // Called when a fragment is first attached to its context.
@@ -75,11 +72,14 @@ public class PizzaFragment extends Fragment {
      * afficher les pizzas listPizzas
      */
     private void afficherlesPizzas(View v){
-        ListView listPizzas = v.findViewById(R.id.listViewPizzas);
+        ListView listPizzas = (ListView) v.findViewById(R.id.listViewPizzas);
 
-        PizzaListAdapter adapter = new PizzaListAdapter(v.getContext(), dbm.readPizza());
+
+        PizzaListAdapter adapter = new PizzaListAdapter(getActivity(), dbm.readPizza());
         listPizzas.setAdapter(adapter);
     }
+
+
     //Mes liens d'aides (Sam)
     //https://www.youtube.com/watch?v=PoPJ-OoBONM
     //https://www.youtube.com/watch?v=_ad6HI94dFQ
