@@ -61,7 +61,7 @@
                 android:id="@+id/imageViewGauche"
                 android:layout_width="180dp"
                 android:layout_height="125dp"
-                app:srcCompat="@drawable/pizza_royale" />
+                app:srcCompat="@drawable/royale" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -80,7 +80,7 @@
                 android:id="@+id/imageViewDroite"
                 android:layout_width="180dp"
                 android:layout_height="125dp"
-                app:srcCompat="@drawable/pizza_aux_tomates" />
+                app:srcCompat="@drawable/tomates" />
 
             <TextView
                 android:id="@+id/textView6"

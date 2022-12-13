@@ -100,7 +100,6 @@ public class PizzaListAdapter extends BaseAdapter {
             //5 - Images
             imgView.setImageResource(images[position]);
             imgView.setTag("Pizza " + sortes[position]);
-            
 
         return convertView;
     }

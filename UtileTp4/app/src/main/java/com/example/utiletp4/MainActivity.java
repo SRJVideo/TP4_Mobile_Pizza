@@ -37,14 +37,13 @@ public class MainActivity extends AppCompatActivity {
     String[] types = {"Petite","Moyenne","Grande"};
 
 
-
-    int[] images = {R.drawable.cheese_pizza,
-            R.drawable.pepperoni_pizza,
-            R.drawable.bacon_pizza,
-            R.drawable.garnished_pizza,
-            R.drawable.pizza_aux_tomates,
-            R.drawable.vegetarian_pizza,
-            R.drawable.pizza_royale};
+    int[] images = {R.drawable.fromage,
+            R.drawable.pepperoni,
+            R.drawable.bacon,
+            R.drawable.garnie,
+            R.drawable.tomates,
+            R.drawable.vegetarienne,
+            R.drawable.royale};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setNavigationDrawer();
 
         // Lance la page d'accueil
-        PizzaFragment home = new PizzaFragment();
+        HomeFragment home = new HomeFragment();
         replaceFragmentInFrame(home);
 
         dbm = new DatabaseManager(this);
