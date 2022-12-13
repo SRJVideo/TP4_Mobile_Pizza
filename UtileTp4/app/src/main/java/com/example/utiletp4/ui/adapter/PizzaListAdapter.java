@@ -1,5 +1,6 @@
 package com.example.utiletp4.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class PizzaListAdapter extends BaseAdapter {
     String[] types;
 
     int[] images;
-    List<Double> prix;
+    List<Double> Assortieprix;
 
 
     public PizzaListAdapter(Context context, List<Pizza> readPizza, String[] sortes, String[] types, int[] images) {
@@ -81,23 +82,22 @@ public class PizzaListAdapter extends BaseAdapter {
              spinner.setAdapter(ad);
 
             //3 - Prendre les prix
-        prix = new ArrayList<>();
-        List<Pizza>assortiePizzas= readPizza.stream().filter(pizza -> Objects.equals(pizza.getSortePizza(), sortes[position])).collect(Collectors.toList());
-        assortiePizzas.forEach(pizza -> prix.add(pizza.getPrix()));
-
-
+            Assortieprix = new ArrayList<>();
+            List<Pizza>assortiePizzas= readPizza.stream().filter(pizza -> Objects.equals(pizza.getSortePizza(), sortes[position])).collect(Collectors.toList());
+            assortiePizzas.forEach(pizza -> Assortieprix.add(pizza.getPrix()));
 
             //4 - Adapter les types et les prix au choix d'element du Spinner
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 textType.setText(parent.getSelectedItem().toString());
                 Log.i("Test " , Arrays.toString(readPizza.toArray()));
-                textPrix.setText(String.valueOf( prix.get(parent.getSelectedItemPosition()) ));
+                textPrix.setText(Assortieprix.get(parent.getSelectedItemPosition()) + "$ ");
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
-        });
+             });
 
             //5 - Images
             imgView.setImageResource(images[position]);
@@ -106,7 +106,8 @@ public class PizzaListAdapter extends BaseAdapter {
             //6 - Bouton programmable pour récupérer les données
             bouton.setOnClickListener(view -> {
                 String sorte = textSorte.toString();
-
+                String type = textType.toString();
+                Double prix = Assortieprix.get(spinner.getSelectedItemPosition());
             });
 
 
