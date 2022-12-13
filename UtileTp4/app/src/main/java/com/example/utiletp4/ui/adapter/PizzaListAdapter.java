@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.utiletp4.R;
 import com.example.utiletp4.modele.Pizza;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -30,9 +32,8 @@ public class PizzaListAdapter extends BaseAdapter {
     List<Pizza> readPizza;
     String[] sortes;
     String[] types;
-
     int[] images;
-    List<Double> Assortieprix;
+
 
 
     public PizzaListAdapter(Context context, List<Pizza> readPizza, String[] sortes, String[] types, int[] images) {
@@ -82,7 +83,7 @@ public class PizzaListAdapter extends BaseAdapter {
              spinner.setAdapter(ad);
 
             //3 - Prendre les prix
-            Assortieprix = new ArrayList<>();
+            List<Double> Assortieprix = new ArrayList<>();
             List<Pizza>assortiePizzas= readPizza.stream().filter(pizza -> Objects.equals(pizza.getSortePizza(), sortes[position])).collect(Collectors.toList());
             assortiePizzas.forEach(pizza -> Assortieprix.add(pizza.getPrix()));
 
@@ -105,9 +106,16 @@ public class PizzaListAdapter extends BaseAdapter {
 
             //6 - Bouton programmable pour récupérer les données
             bouton.setOnClickListener(view -> {
-                String sorte = textSorte.toString();
-                String type = textType.toString();
-                Double prix = Assortieprix.get(spinner.getSelectedItemPosition());
+                String sorte = (String) textSorte.getText();
+                String type = (String) textType.getText();
+                Double prix = Double.parseDouble((String) textPrix.getText().subSequence(0,textPrix.length()-2))   ;
+
+               Optional<Pizza> choisie = readPizza.stream().filter(pizza ->
+                       pizza.getPrix() == prix &&
+                               Objects.equals(pizza.getSortePizza(), sorte) &&
+                               Objects.equals(pizza.getType(), type)
+               ).findFirst();
+                Toast.makeText(context.getApplicationContext(), "J'ai choisi --> "+ choisie+". Miam miam!",Toast.LENGTH_SHORT).show();
             });
 
 

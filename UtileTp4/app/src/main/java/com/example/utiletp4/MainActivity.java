@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
     String[] types = {"Petite","Moyenne","Grande"};
-
-
     int[] images = {R.drawable.fromage,
             R.drawable.pepperoni,
             R.drawable.bacon,
