@@ -1,9 +1,6 @@
 package com.example.utiletp4.ui.adapter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.example.utiletp4.R;
 import com.example.utiletp4.modele.Pizza;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PizzaListAdapter extends BaseAdapter {
     Context context;
@@ -28,6 +23,9 @@ public class PizzaListAdapter extends BaseAdapter {
     List<Pizza> readPizza;
     String[] sortes;
     String[] types;
+    ImageView imgView;
+    private TextView textSorte;
+    int pizzaImg[] = {R.drawable.fromage, R.drawable.pepperoni, R.drawable.bacon, R.drawable.garnie, R.drawable.tomates, R.drawable.vegetarienne,R.drawable.royale};
 
     public PizzaListAdapter(Context context, List<Pizza> readPizza, String[] sortes, String[] types) {
         this.context = context;
@@ -60,9 +58,8 @@ public class PizzaListAdapter extends BaseAdapter {
         if(convertView == null)
         convertView = inflater.inflate(R.layout.pizza_list_adapter, parent,false);
 
-
-            ImageView imgView = convertView.findViewById(R.id.imageViewPizzas);
-            TextView textSorte = convertView.findViewById(R.id.textViewSortePizza);
+            imgView = convertView.findViewById(R.id.imageViewPizzas);
+            textSorte = convertView.findViewById(R.id.textViewSortePizza);
             TextView textType = convertView.findViewById(R.id.textViewTypePizza);
             TextView textPrix = convertView.findViewById(R.id.textViewPrixPizza);
             Spinner spinner = convertView.findViewById(R.id.spinnerPizza);
@@ -87,26 +84,20 @@ public class PizzaListAdapter extends BaseAdapter {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        mettreImageViewPizza();
 
 //        bouton.setOnClickListener(v -> {
 //
 //        });
 
         return convertView;
+    }
+
+    void mettreImageViewPizza(){
+        for (int i=0; i<sortes.length; i++){
+            if (textSorte.getText().equals(sortes[i])){
+                imgView.setImageResource(pizzaImg[i]);
+            }
+        }
     }
 }
