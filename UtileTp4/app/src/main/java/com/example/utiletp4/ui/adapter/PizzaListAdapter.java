@@ -115,7 +115,7 @@ public class PizzaListAdapter extends BaseAdapter {
                                Objects.equals(pizza.getSortePizza(), sorte) &&
                                Objects.equals(pizza.getType(), type)
                ).findFirst();
-                Toast.makeText(context.getApplicationContext(), "J'ai choisi --> "+ choisie+". Miam miam!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context.getApplicationContext(), "J'ai choisi --> "+ choisie.get()+". Miam miam!",Toast.LENGTH_SHORT).show();
             });
 
 
