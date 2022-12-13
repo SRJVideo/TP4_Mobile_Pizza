@@ -73,7 +73,6 @@ public class PizzaListAdapter extends BaseAdapter {
             //1 - Insertion de sorte par position
             textSorte.setText(sortes[position]);
 
-
             //2 - Spinner (c'est presque ça)
              ArrayAdapter ad = new ArrayAdapter(context,android.R.layout.simple_spinner_item,types);
              spinner.setAdapter(ad);
@@ -100,6 +99,16 @@ public class PizzaListAdapter extends BaseAdapter {
             //5 - Images
             imgView.setImageResource(images[position]);
             imgView.setTag("Pizza " + sortes[position]);
+
+            //6 - Bouton programmable pour récupérer les données
+            bouton.setOnClickListener(view -> {
+                String sorte = textSorte.toString();
+
+            });
+
+
+
+
 
         return convertView;
     }
