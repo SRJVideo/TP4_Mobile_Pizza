@@ -18,7 +18,7 @@ import com.example.utiletp4.modele.Pizza;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class PizzaListAdapter extends BaseAdapter {
     Context context;
@@ -26,8 +26,10 @@ public class PizzaListAdapter extends BaseAdapter {
     List<Pizza> readPizza;
     String[] sortes;
     String[] types;
+
     int[] images;
     List<Double> prix;
+
 
     public PizzaListAdapter(Context context, List<Pizza> readPizza, String[] sortes, String[] types, int[] images) {
         this.context = context;
@@ -98,32 +100,10 @@ public class PizzaListAdapter extends BaseAdapter {
             //5 - Images
             imgView.setImageResource(images[position]);
             imgView.setTag("Pizza " + sortes[position]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        bouton.setOnClickListener(v -> {
-//
-//        });
+            
 
         return convertView;
     }
+
+
 }

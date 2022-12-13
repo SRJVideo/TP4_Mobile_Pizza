@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    tools:context=".ui.adapter.PizzaListAdapter">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/imageViewPizzas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Lineaire de des infos pizzas -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/prixPizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="sortePizza"
+                android:textAlignment="textEnd" />
+
+            <TextView
+                android:id="@+id/nomPizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total"
+                android:textAlignment="textEnd" />
+
+            <Button
+                android:id="@+id/incrementerNombrePizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:minHeight="48dp"
+                android:text="+" />
+
+            <TextView
+                android:id="@+id/nombrePizza"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="center_horizontal"
+                android:text="1"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/decrementerNombrePizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:minHeight="48dp"
+                android:onClick="ajouterNombrePizza"
+                android:text="-" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</TableRow>
