@@ -16,8 +16,11 @@ import android.widget.TextView;
 import com.example.utiletp4.R;
 import com.example.utiletp4.modele.Pizza;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class PizzaListAdapter extends BaseAdapter {
@@ -78,11 +81,11 @@ public class PizzaListAdapter extends BaseAdapter {
              spinner.setAdapter(ad);
 
             //3 - Prendre les prix
-            for (Pizza p: readPizza ) {
-                if (p.getSortePizza() == (sortes[position])) {
-                    prix.add(p.getPrix());
-                }
-            }
+        prix = new ArrayList<>();
+        List<Pizza>assortiePizzas= readPizza.stream().filter(pizza -> Objects.equals(pizza.getSortePizza(), sortes[position])).collect(Collectors.toList());
+        assortiePizzas.forEach(pizza -> prix.add(pizza.getPrix()));
+
+
 
             //4 - Adapter les types et les prix au choix d'element du Spinner
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -90,7 +93,7 @@ public class PizzaListAdapter extends BaseAdapter {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 textType.setText(parent.getSelectedItem().toString());
                 Log.i("Test " , Arrays.toString(readPizza.toArray()));
-                textPrix.setText(String.valueOf( parent.getSelectedItemId() ));
+                textPrix.setText(String.valueOf( prix.get(parent.getSelectedItemPosition()) ));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}

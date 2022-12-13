@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragmentInFrame(home);
 
         dbm = new DatabaseManager(this);
-        if (dbm.readPizza() == null) AjoutPizzaBD();
+        if (dbm.readPizza().isEmpty()) AjoutPizzaBD();
         Log.i("Les pizzas", String.valueOf(dbm.readPizza()));
     }
 
@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
      * Ajouter des pizzas dans la BD si celle-ci est vide
      */
     void AjoutPizzaBD(){
-        for (int i=0 ; i < types.length ; i++) {
+        for (int i=0 ; i < sortes.length ; i++) {
             BigDecimal decimal = BigDecimal.valueOf(Math.random()*10).setScale(2, RoundingMode.UP);
             double prix = Double.parseDouble(String.valueOf(decimal));
-            for (int j=0 ; j <sortes.length; i++ ) {
+            for (int j=0 ; j <types.length; j++ ) {
                 
-                dbm.insertPizza(new Pizza(sortes[j], types[i], prix));
+                dbm.insertPizza(new Pizza(sortes[i], types[j], prix+j));
             }
         }
     }
