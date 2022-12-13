@@ -24,8 +24,6 @@ import java.math.RoundingMode;
 public class PizzaFragment extends Fragment  {
     private MainActivity mainActivity;
     DatabaseManager dbm;
-    String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
-    String[] types = {"Petite","Moyenne","Grande"};
 
     @Nullable
     @Override
@@ -33,8 +31,6 @@ public class PizzaFragment extends Fragment  {
         View root = inflater.inflate(R.layout.fragment_pizza, container, false);
         // Instantiate object DB and View
         dbm = new DatabaseManager(getActivity());
-        if (dbm.readPizza() != null) AjoutPizzaBD();
-
         return root;
     }
 
@@ -56,29 +52,13 @@ public class PizzaFragment extends Fragment  {
     }
 
 
-    /***
-     * Ajouter des pizzas dans la BD si celle-ci est vide
-     */
-    void AjoutPizzaBD(){
-        for (int i=0 ; i < sortes.length ; i++) {
-            BigDecimal decimal = new BigDecimal(Math.random()*10).setScale(2, RoundingMode.UP);
-
-            for (int j=0 ; i <types.length; i++ ) {
-                Pizza pizza = new Pizza(sortes[i], types[j], Double.parseDouble(String.valueOf(decimal))*j);
-                dbm.insertPizza(pizza);
-            }
-        }
-    }
-
-
-
     /**
      * afficher les pizzas listPizzas
      */
     private void afficherlesPizzas(View v){
         ListView listPizzas = (ListView) v.findViewById(R.id.listViewPizzas);
 
-        PizzaListAdapter adapter = new PizzaListAdapter(getActivity(), dbm.readPizza(),sortes,types);
+        PizzaListAdapter adapter = new PizzaListAdapter(getActivity(), dbm.readPizza(),mainActivity.getSortes(),mainActivity.getTypes(), mainActivity.getImages());
         listPizzas.setAdapter(adapter);
     }
 

@@ -12,21 +12,39 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.example.utiletp4.database.DatabaseManager;
 import com.example.utiletp4.fragment.CommandeFragment;
 import com.example.utiletp4.fragment.PizzaFragment;
 import com.example.utiletp4.fragment.PointsFragment;
+import com.example.utiletp4.modele.Pizza;
 import com.example.utiletp4.modele.User;
 import com.example.utiletp4.ui.InscriptionFragment;
 import com.example.utiletp4.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private User currentUser = null;
 
-
+    private DatabaseManager dbm;
     private Toolbar toolbar;
+
+    String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
+    String[] types = {"Petite","Moyenne","Grande"};
+
+
+
+    int[] images = {R.drawable.cheese_pizza,
+            R.drawable.pepperoni_pizza,
+            R.drawable.bacon_pizza,
+            R.drawable.garnished_pizza,
+            R.drawable.pizza_aux_tomates,
+            R.drawable.vegetarian_pizza,
+            R.drawable.pizza_royale};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +65,12 @@ public class MainActivity extends AppCompatActivity {
         setNavigationDrawer();
 
         // Lance la page d'accueil
-        HomeFragment home = new HomeFragment();
+        PizzaFragment home = new PizzaFragment();
         replaceFragmentInFrame(home);
+
+        dbm = new DatabaseManager(this);
+        if (dbm.readPizza() != null) AjoutPizzaBD();
+
     }
 
     public void setNavigationDrawer() {
@@ -103,4 +125,38 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawers();
         }
     }
+
+    /***
+     * Ajouter des pizzas dans la BD si celle-ci est vide
+     */
+    void AjoutPizzaBD(){
+        Pizza pizza;
+        for (int i=0 ; i < sortes.length ; i++) {
+            BigDecimal decimal = new BigDecimal(Math.random()*10).setScale(2, RoundingMode.UP);
+
+            for (int j=0 ; i <types.length; i++ ) {
+                double prix =Double.parseDouble(String.valueOf(decimal));
+                 pizza = new Pizza(sortes[i], types[j], prix) ;
+                dbm.insertPizza(pizza);
+            }
+        }
+    }
+
+    /***
+     * Getter setter
+     * @return
+     */
+    public String[] getSortes() {
+        return sortes;
+    }
+
+    public String[] getTypes() {
+        return types;
+    }
+
+    public int[] getImages() {
+        return images;
+    }
+
+
 }
