@@ -1,5 +1,6 @@
 package com.example.utiletp4;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class listCommandeArrayAdapter extends ArrayAdapter<Pizza> {
         this.inflater = LayoutInflater.from(context);
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -52,16 +54,36 @@ public class listCommandeArrayAdapter extends ArrayAdapter<Pizza> {
         Button btDecrement = convertView.findViewById(R.id.decrementerNombrePizza);
         TextView textNombre = convertView.findViewById(R.id.nombrePizza);
         TextView textSorte = convertView.findViewById(R.id.sortePizza);
-        TextView textType = convertView.findViewById(R.id.typePizza);
+        TextView textPrix = convertView.findViewById(R.id.price);
         TextView textTotal = convertView.findViewById(R.id.total);
 
 //pizzaChoisie.get(position)
 
 
-        textSorte.setText(pizzaChoisie.get(position).getSortePizza());
-        textType.setText(pizzaChoisie.get(position).getType());
-        textTotal.setText(String.valueOf( pizzaChoisie.get(position).getPrix()));
+        textSorte.setText(pizzaChoisie.get(position).getSortePizza().toUpperCase() +" - "+pizzaChoisie.get(position).getType().toUpperCase());
+        textPrix.setText(String.valueOf( pizzaChoisie.get(position).getPrix()));
+        textTotal.setText(textTotal.getText());
         imgView.setImageDrawable(images.get(position));
+        btIncremente.setOnClickListener(v -> {
+            int newvalue = Integer.parseInt(textNombre.getText().toString());
+            textNombre.setText(""+(++newvalue)+"");
+            double newtotal = Double.parseDouble(textPrix.getText().toString())*newvalue;
+            textTotal.setText(""+String.format("%.2f",newtotal)+"");
+        });
+        btDecrement.setOnClickListener(v -> {
+            int newvalue = Integer.parseInt(textNombre.getText().toString());
+
+            if (newvalue > 1){
+                double newtotal = (Double.parseDouble(textTotal.getText().toString())/newvalue);
+                textNombre.setText(""+(--newvalue)+"");
+                newtotal *= newvalue;
+                textTotal.setText(""+String.format("%.2f",newtotal)+"");
+            }
+
+
+
+        });
+
 
 
 
