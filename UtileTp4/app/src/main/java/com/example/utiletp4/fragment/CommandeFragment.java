@@ -47,7 +47,27 @@ public class CommandeFragment extends Fragment {
         textTotalCommande = view.findViewById(R.id.totalCommandeTextView);
         textEconomie = view.findViewById(R.id.textViewEconomie);
         textAvecPoints = view.findViewById(R.id.textViewTotalAvecPoints);
+
         listView.setAdapter(adapter);
+
+textTotalCommande.addTextChangedListener(new TextWatcher() {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        Double n = Double.parseDouble(textTotalCommande.getText().toString()) +  Double.parseDouble(textEconomie.getText().toString()) ;
+        textAvecPoints.setText(String.format("%.2f",n));
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+});
+
 
 
         Button btAddToCart = view.findViewById(R.id.button);

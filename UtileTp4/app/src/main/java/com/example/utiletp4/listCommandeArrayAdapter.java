@@ -116,6 +116,6 @@ public class listCommandeArrayAdapter extends ArrayAdapter<Pizza> {
     }
 
     public void changerTextPrixTotal(TextView textView){
-        textView.setText(""+getPrixTotalComande()+"");
+        textView.setText(String.format("%.2f",getPrixTotalComande()));
     }
 }
