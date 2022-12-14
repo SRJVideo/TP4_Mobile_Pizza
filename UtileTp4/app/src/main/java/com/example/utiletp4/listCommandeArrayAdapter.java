@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.utiletp4.fragment.CommandeFragment;
 import com.example.utiletp4.modele.Commande;
 import com.example.utiletp4.modele.Pizza;
 
@@ -28,6 +29,9 @@ public class listCommandeArrayAdapter extends ArrayAdapter<Pizza> {
     LayoutInflater inflater;
     List<Pizza> pizzaChoisie;
     List<Drawable> images;
+
+    double prixTotalComande = 0;
+
 
     public listCommandeArrayAdapter(@NonNull Context context, int resource, @NonNull List<Pizza> pizzaChoisie, List<Drawable> images) {
         super(context, resource, pizzaChoisie);
@@ -57,18 +61,21 @@ public class listCommandeArrayAdapter extends ArrayAdapter<Pizza> {
         TextView textPrix = convertView.findViewById(R.id.price);
         TextView textTotal = convertView.findViewById(R.id.total);
 
-//pizzaChoisie.get(position)
-
 
         textSorte.setText(pizzaChoisie.get(position).getSortePizza().toUpperCase() +" - "+pizzaChoisie.get(position).getType().toUpperCase());
         textPrix.setText(String.valueOf( pizzaChoisie.get(position).getPrix()));
-        textTotal.setText(textTotal.getText());
+        textTotal.setText(textPrix.getText());
+        prixTotalComande += Double.parseDouble(textTotal.getText().toString());
+
         imgView.setImageDrawable(images.get(position));
         btIncremente.setOnClickListener(v -> {
             int newvalue = Integer.parseInt(textNombre.getText().toString());
             textNombre.setText(""+(++newvalue)+"");
             double newtotal = Double.parseDouble(textPrix.getText().toString())*newvalue;
             textTotal.setText(""+String.format("%.2f",newtotal)+"");
+            calculerPrixTotalComandePlus(Double.parseDouble(textPrix.getText().toString()));
+            System.out.println("Prix C "+getPrixTotalComande());
+
         });
         btDecrement.setOnClickListener(v -> {
             int newvalue = Integer.parseInt(textNombre.getText().toString());
@@ -78,15 +85,32 @@ public class listCommandeArrayAdapter extends ArrayAdapter<Pizza> {
                 textNombre.setText(""+(--newvalue)+"");
                 newtotal *= newvalue;
                 textTotal.setText(""+String.format("%.2f",newtotal)+"");
+                calculerPrixTotalComandeMoins(Double.parseDouble(textPrix.getText().toString()));
+                System.out.println("Prix C "+getPrixTotalComande());
+
             }
-
-
-
         });
-
-
+        System.out.println("Prix C "+getPrixTotalComande());
 
 
         return convertView;
+    }
+
+    private void calculerPrixTotalComandePlus (double d){
+       double n = prixTotalComande + d;
+       prixTotalComande = n;
+    }
+
+    private void calculerPrixTotalComandeMoins (double d){
+        double n = prixTotalComande - d;
+        prixTotalComande = n;
+    }
+
+    public double getPrixTotalComande() {
+        return prixTotalComande;
+    }
+
+    public void changerTextPrixTotal(TextView textView){
+        textView.setText(String.format("%.2f",getPrixTotalComande()));
     }
 }
