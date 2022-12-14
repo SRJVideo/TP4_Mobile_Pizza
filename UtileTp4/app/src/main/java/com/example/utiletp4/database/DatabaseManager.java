@@ -22,7 +22,7 @@ public class DatabaseManager extends OrmLiteSqliteOpenHelper {
 
     // Info sur la BD
     private static final String DATABASE_NAME = "TP4.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
 
     /**
      * Construtor

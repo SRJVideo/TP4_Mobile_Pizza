@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -24,11 +25,13 @@ import com.example.utiletp4.ui.InscriptionFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements Animation.AnimationListener {
 
     private ImageView imageViewHaut;
     private ImageView imageViewGauche;
     private ImageView imageViewDroite;
+    ImageView imageViewAcceuil;
+    Animation animFade;
 
     private MainActivity mainActivity;
 
@@ -46,7 +49,21 @@ public class HomeFragment extends Fragment {
 
         loginButton.setOnClickListener(this::login);
         subscribeButton.setOnClickListener(this::subscribe);
+
+
         return root;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        imageViewAcceuil = view.findViewById(R.id.imageViewHaut);
+        animFade = AnimationUtils.loadAnimation(this.getContext(),
+                R.anim.fade );
+        imageViewAcceuil.startAnimation(animFade);
+
+
     }
 
     public void login(View view){
@@ -77,5 +94,20 @@ public class HomeFragment extends Fragment {
         if (context instanceof MainActivity) {
             this.mainActivity = (MainActivity) context;
         }
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
     }
 }
