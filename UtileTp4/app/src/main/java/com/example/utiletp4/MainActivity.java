@@ -54,10 +54,6 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     Animation animFade;
     private float factor;
 
-
-    String[] sortes = {"Fromage", "Péppéroni", "Bacon", "Garnie", "Tomates", "Végétarienne", "Royale"};
-    String[] types = {"Petite", "Moyenne", "Grande"};
-
     List<Pizza> pizzaChoisie;
     List<Drawable> drawPizzaChoisie;
     String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
@@ -93,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         // Lancer base de donnée
         dbm = new DatabaseManager(this);
         if (dbm.readPizza().isEmpty()) AjoutPizzaBD();
-
         Log.i("Les pizzas", String.valueOf(dbm.readPizza()));
 
 

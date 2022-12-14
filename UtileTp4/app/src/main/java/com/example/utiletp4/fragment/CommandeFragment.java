@@ -22,12 +22,12 @@ public class CommandeFragment extends Fragment {
     MainActivity mainActivity;
     ListView listView;
 
-
-    Double totalCommande;
+    listCommandeArrayAdapter adapter;
     TextView textTotalCommande;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_commande, container, false);
+        adapter = new listCommandeArrayAdapter(getContext(),R.layout.pizza_list_commande_adapter, mainActivity.getPizzaChoisie(), mainActivity.getDrawPizzaChoisie(),this);
 
         System.out.println("taille de liste pizza : "+mainActivity.getPizzaChoisie().size());
         return root;
@@ -40,15 +40,7 @@ public class CommandeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listView = view.findViewById(R.id.listpizza);
         textTotalCommande = view.findViewById(R.id.totalCommandeTextView);
-
-        listCommandeArrayAdapter adapter = new listCommandeArrayAdapter(getContext(),R.layout.pizza_list_commande_adapter, mainActivity.getPizzaChoisie(), mainActivity.getDrawPizzaChoisie());
         listView.setAdapter(adapter);
-        adapter.changerTextPrixTotal(textTotalCommande);
-
-
-      //  textTotalCommande.setText(String.valueOf(totalCommande));
-
-
     }
 
     // Called when a fragment is first attached to its context.
@@ -61,16 +53,11 @@ public class CommandeFragment extends Fragment {
         }
     }
 
-    private void checkgahngement(String s){
-        textTotalCommande.setText(s);
+
+
+    public TextView getTextTotalCommande() {
+        return textTotalCommande;
     }
 
 
-    public Double getTotalCommande() {
-        return totalCommande;
-    }
-
-    public void setTotalCommande(Double totalCommande) {
-        this.totalCommande = totalCommande;
-    }
 }
