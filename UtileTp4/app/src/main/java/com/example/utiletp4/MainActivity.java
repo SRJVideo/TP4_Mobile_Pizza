@@ -1,5 +1,6 @@
 package com.example.utiletp4;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseManager dbm;
     private Toolbar toolbar;
 
+    List<Pizza> pizzaChoisie;
+    List<Drawable> drawPizzaChoisie;
     String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
     String[] types = {"Petite","Moyenne","Grande"};
     int[] images = {R.drawable.fromage,
@@ -65,9 +70,11 @@ public class MainActivity extends AppCompatActivity {
         HomeFragment home = new HomeFragment();
         replaceFragmentInFrame(home);
 
+        // Lancer base de donnée
         dbm = new DatabaseManager(this);
         if (dbm.readPizza().isEmpty()) AjoutPizzaBD();
-        Log.i("Les pizzas", String.valueOf(dbm.readPizza()));
+        pizzaChoisie = new ArrayList<>();
+        drawPizzaChoisie = new ArrayList<>();
     }
 
     public void setNavigationDrawer() {
@@ -153,5 +160,21 @@ public class MainActivity extends AppCompatActivity {
         return images;
     }
 
+
+    public List<Pizza> getPizzaChoisie() {
+        return pizzaChoisie;
+    }
+
+    public void setPizzaChoisie(List<Pizza> pizzaChoisie) {
+        this.pizzaChoisie = pizzaChoisie;
+    }
+
+    public List<Drawable> getDrawPizzaChoisie() {
+        return drawPizzaChoisie;
+    }
+
+    public void setDrawPizzaChoisie(List<Drawable> drawPizzaChoisie) {
+        this.drawPizzaChoisie = drawPizzaChoisie;
+    }
 
 }

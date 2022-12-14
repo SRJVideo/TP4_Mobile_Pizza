@@ -2,6 +2,7 @@ package com.example.utiletp4.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,9 @@ public class PizzaListAdapter extends BaseAdapter {
     String[] sortes;
     String[] types;
     int[] images;
+    //List de pizza ajoutés
+    List<Pizza> pizzaAjoutes;
+    List<Drawable> tagImages;
 
 
 
@@ -42,6 +46,8 @@ public class PizzaListAdapter extends BaseAdapter {
         this.sortes = sortes;
         this.types = types;
         this.images = images;
+        pizzaAjoutes = new ArrayList<>();
+        tagImages = new ArrayList<>();
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -93,7 +99,6 @@ public class PizzaListAdapter extends BaseAdapter {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 textType.setText(parent.getSelectedItem().toString());
-                Log.i("Test " , Arrays.toString(readPizza.toArray()));
                 textPrix.setText(Assortieprix.get(parent.getSelectedItemPosition()) + "$ ");
             }
             @Override
@@ -104,18 +109,27 @@ public class PizzaListAdapter extends BaseAdapter {
             imgView.setImageResource(images[position]);
             imgView.setTag("Pizza " + sortes[position]);
 
+
             //6 - Bouton programmable pour récupérer les données
             bouton.setOnClickListener(view -> {
                 String sorte = (String) textSorte.getText();
                 String type = (String) textType.getText();
-                Double prix = Double.parseDouble((String) textPrix.getText().subSequence(0,textPrix.length()-2))   ;
+                Double prix = Double.parseDouble((String) textPrix.getText().subSequence(0,textPrix.length()-2));
 
-               Optional<Pizza> choisie = readPizza.stream().filter(pizza ->
+                Optional<Pizza> choisie = readPizza.stream().filter(pizza ->
                        pizza.getPrix() == prix &&
                                Objects.equals(pizza.getSortePizza(), sorte) &&
                                Objects.equals(pizza.getType(), type)
-               ).findFirst();
+                ).findFirst();
+
+
+                tagImages.add(imgView.getDrawable());
+                pizzaAjoutes.add(choisie.get());
+                System.out.println("ajoute au complet : "+ pizzaAjoutes.size() );
+                System.out.println("tag list : "+ tagImages.toString() );
+
                 Toast.makeText(context.getApplicationContext(), "J'ai choisi --> "+ choisie.get()+". Miam miam!",Toast.LENGTH_SHORT).show();
+
             });
 
 
@@ -125,5 +139,11 @@ public class PizzaListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public List<Pizza> obtenirLesPizzaAjoutees(){
+        return pizzaAjoutes;
+    }
 
+    public List<Drawable> getTagImages() {
+        return tagImages;
+    }
 }
