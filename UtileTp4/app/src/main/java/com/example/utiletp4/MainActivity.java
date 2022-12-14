@@ -1,6 +1,10 @@
 package com.example.utiletp4;
 
+
 import android.graphics.Color;
+
+import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,6 +37,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
 
@@ -48,8 +54,15 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     Animation animFade;
     private float factor;
 
+
     String[] sortes = {"Fromage", "Péppéroni", "Bacon", "Garnie", "Tomates", "Végétarienne", "Royale"};
     String[] types = {"Petite", "Moyenne", "Grande"};
+
+    List<Pizza> pizzaChoisie;
+    List<Drawable> drawPizzaChoisie;
+    String[] sortes = {"Fromage","Péppéroni","Bacon","Garnie","Tomates","Végétarienne","Royale"};
+    String[] types = {"Petite","Moyenne","Grande"};
+
     int[] images = {R.drawable.fromage,
             R.drawable.pepperoni,
             R.drawable.bacon,
@@ -77,8 +90,10 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         setNavigationDrawer();
         imageView = findViewById(R.id.imageViewPizzas);
 
+        // Lancer base de donnée
         dbm = new DatabaseManager(this);
         if (dbm.readPizza().isEmpty()) AjoutPizzaBD();
+
         Log.i("Les pizzas", String.valueOf(dbm.readPizza()));
 
 
@@ -104,6 +119,10 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 //                    }
 //                }
 //        );
+
+
+        pizzaChoisie = new ArrayList<>();
+        drawPizzaChoisie = new ArrayList<>();
 
     }
 
@@ -259,5 +278,21 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 //        }
 //
 //    }
+
+    public List<Pizza> getPizzaChoisie() {
+        return pizzaChoisie;
+    }
+
+    public void setPizzaChoisie(List<Pizza> pizzaChoisie) {
+        this.pizzaChoisie = pizzaChoisie;
+    }
+
+    public List<Drawable> getDrawPizzaChoisie() {
+        return drawPizzaChoisie;
+    }
+
+    public void setDrawPizzaChoisie(List<Drawable> drawPizzaChoisie) {
+        this.drawPizzaChoisie = drawPizzaChoisie;
+    }
 
 }

@@ -9,16 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.utiletp4.R;
 import com.example.utiletp4.database.DatabaseManager;
-import com.example.utiletp4.modele.Pizza;
 
-import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.annotation.Nullable;
 import com.example.utiletp4.MainActivity;
 import com.example.utiletp4.ui.adapter.PizzaListAdapter;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 
 public class PizzaFragment extends Fragment  {
@@ -51,7 +46,6 @@ public class PizzaFragment extends Fragment  {
         }
     }
 
-
     /**
      * afficher les pizzas listPizzas
      */
@@ -60,6 +54,9 @@ public class PizzaFragment extends Fragment  {
 
         PizzaListAdapter adapter = new PizzaListAdapter(getActivity(), dbm.readPizza(),mainActivity.getSortes(),mainActivity.getTypes(), mainActivity.getImages());
         listPizzas.setAdapter(adapter);
+        System.out.println("adapter listPizzaAjoutees : "+adapter.obtenirLesPizzaAjoutees() );
+        mainActivity.setPizzaChoisie(adapter.obtenirLesPizzaAjoutees());
+        mainActivity.setDrawPizzaChoisie(adapter.getTagImages());
     }
 
 
